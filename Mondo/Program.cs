@@ -28,11 +28,6 @@ namespace Mondo
             //Nuovo abitante
             Abitante alex = new Abitante("Alex", moncalieri);
             moncalieri.AddAbitante(alex);
-
-
-            //Test
-            Console.WriteLine($"Continente creato: {europa}");
-            Console.WriteLine($"Nazione creata: {italia}");
         }
     }
 }
