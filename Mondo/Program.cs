@@ -26,8 +26,8 @@ namespace Mondo
             torino.AddComune(moncalieri);
 
             //Nuovo abitante
-            Abitante alex = new Abitante("Alex", moncalieri);
-            moncalieri.AddAbitante(alex);
+            Abitante mario = new Abitante("Mario", "Rossi", moncalieri);
+            moncalieri.AddAbitante(mario);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mondo
 {
-    internal class UnioneEuropea
+    internal class UnioneEuropea : Organizzazione
     {
     }
 }

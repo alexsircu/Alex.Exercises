@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mondo
 {
-    internal class Continente : AreaGeografica
+    internal class Continente
     {
         Nazione _nazione; 
         public Continente(string nazioneName) 

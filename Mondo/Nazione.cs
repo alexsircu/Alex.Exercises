@@ -10,6 +10,7 @@ namespace Mondo
     {
         string _name;
         Regione _regione;
+
         public Nazione(string nazioneName) 
         {
             Name = nazioneName;
