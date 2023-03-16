@@ -7,27 +7,13 @@ namespace Mondo
     {
         static void Main(string[] args)
         {
-            //Nuovo continente
-            Continente europa = new Continente("Italia");
+            Continente europa = new Continente("Europa");
+            europa.CreateNazione("Italia");
+            europa.CreateRegione("Piemonte");
+            europa.CreateProvincia("Novara");
+            europa.CreateComune("Galliate");
 
-            //Nazione creata
-            Nazione italia = europa.Nazione;
-
-            //Nuova regione
-            Regione piemonte = new Regione("Piemonte", italia);
-            italia.AddRegione(piemonte);
-
-            //Nuova provincia
-            Provincia torino = new Provincia("Torino", piemonte);
-            piemonte.AddProvincia(torino);
-
-            //Nuovo comune
-            Comune moncalieri = new Comune("Moncalieri", torino);
-            torino.AddComune(moncalieri);
-
-            //Nuovo abitante
-            Abitante mario = new Abitante("Mario", "Rossi", moncalieri);
-            moncalieri.AddAbitante(mario);
+            europa.ChangeCoumne("Italia", "Lombardia", "Busto Arsizio", "Galliate");
         }
     }
 }
