@@ -131,16 +131,15 @@ namespace Mondo
                     ProvinciaObj.CreateComune(comuneName);
                 }
 
-                private void AddProvincia(Provincia provincia)
+                /*private void AddProvincia(Provincia provincia)
                 {
                     ProvinciaObj = provincia;
-                }
+                }*/
 
-                public void ChangeProvincia(Regione regione)
+                /*public void ChangeProvincia(string provinciaNameDest)
                 {
-                    regione.AddProvincia(ProvinciaObj);
-                    ProvinciaObj = null;
-                }
+                    CreateProvincia(provinciaNameDest);
+                }*/
 
                 public void ChangeComune(string provinciaNameDest, string comuneNameDest, string printText)
                 {
@@ -170,10 +169,10 @@ namespace Mondo
                     {
                         ComuneObj = new Comune(comuneName, this);
                     }
-                    private void AddComune(Comune comune)
+                    /*private void AddComune(Comune comune)
                     {
                         ComuneObj = comune;
-                    }
+                    }*/
                     public void ChangeComune(string nameComuneDest, string printText)
                     {
                         this.CreateComune(nameComuneDest);
