@@ -17,6 +17,10 @@ namespace Interfacce
             ApplyCostitution();
             SviluppaRelazioniAmichevoli();
         }
+        public override void PaeseContinenteEuropeo()
+        {
+            Console.WriteLine("Paese continente europeo");
+        }
         public void CheckHumanRightsAgreement()
         {
             Console.WriteLine($"Il paese {Name} non rispetta diritti umani");

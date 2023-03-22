@@ -8,5 +8,6 @@ namespace Interfacce
 {
     internal abstract class PaeseEuropeo
     {
+        public abstract void PaeseContinenteEuropeo();
     }
 }

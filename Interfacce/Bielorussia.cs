@@ -17,6 +17,10 @@ namespace Interfacce
             CheckHumanRightsAgreement();
             SviluppaRelazioniAmichevoli();
         }
+        public override void PaeseContinenteEuropeo()
+        {
+            Console.WriteLine("Paese continente europeo");
+        }
         public void ApplicaPenaMorte()
         {
             Console.WriteLine($"Il paese {Name} applica la pena di morte");
