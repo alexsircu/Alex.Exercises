@@ -8,6 +8,14 @@ namespace ArrayRemoveExercise
         {
             Car car = new Car("Fiat", 5);
             car.RemoveOwner("Elena");
+
+            car.addOwner("mario");
+            car.addOwner("stefano");
+            car.addOwner("giuseppe");
+            car.addOwner("peppino");
+            car.addOwner("elena");
+            car.addOwner("ilaria");
+            car.addOwner("matteo");
         }
 
         class Car
@@ -24,12 +32,18 @@ namespace ArrayRemoveExercise
 
             public void addOwner(string Name)
             {
-                //  
                 if (counter < _owners.Length)
                 {
                     _owners[counter] = Name;
-                    counter++;
                 }
+                else
+                {
+                    string[] owners2 = new string[counter + 1];
+                    Array.Copy(_owners, owners2, _owners.Length);
+                    _owners = owners2;
+                    _owners[counter] = Name;
+                }
+                counter++;
             }
             public void RemoveOwner(string Name)
             {
@@ -43,7 +57,7 @@ namespace ArrayRemoveExercise
 
                 var person = Array.Find(items, item => item.Name == Name);
                 var index = Array.IndexOf(items, person);
-                items[index].Name = "Ilaria";
+                items[index].Name = null;
 
                 for (int i = 0; i < items.Length; i++)
                 {
