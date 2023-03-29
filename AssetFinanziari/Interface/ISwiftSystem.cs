@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AssetFinanziari
+namespace AssetFinanziari.Interface
 {
     public interface ISwiftSystem
     {
-        public string BICNumber { get; set; }
-        public void CreateBICNumber();
+        /*public string BICNumber { get; set; }
+        public void CreateBICNumber();*/
     }
 }

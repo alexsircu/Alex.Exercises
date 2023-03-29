@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AssetFinanziari
+namespace AssetFinanziari.Abstract
 {
     public abstract class Person
     {
         string _name;
         string _surname;
+        string _id;
         string _sex;
         int _age;
 
         public string Name { get { return _name; } set { _name = value; } }
         public string Surname { get { return _surname; } set { _surname = value; } }
+        public string ID { get { return _id; } set { _id = value; } }
         public string Sex { get { return _sex; } set { _sex = value; } }
         public int Age { get { return _age; } set { _age = value; } }
         public string FullName { get { return _name + " " + _surname; } }
