@@ -6,7 +6,7 @@ using AssetFinanziari.Model;
 
 namespace AssetFinanziari.Abstract
 {
-    public abstract class Bank
+    internal abstract class Bank : FinancialIntermediary
     {
         string _name;
         string _headquarter;

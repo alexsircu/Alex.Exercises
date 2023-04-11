@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfacce", "Interfacce\In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetFinanziari", "AssetFinanziari\AssetFinanziari.csproj", "{E3E68795-4BCB-493C-93FB-C8A1C45B4C2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayRemoveExercise", "ArrayRemoveExercise\ArrayRemoveExercise.csproj", "{6BBA8F45-71AE-4090-AA00-F64317E905C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrayRemoveExercise", "ArrayRemoveExercise\ArrayRemoveExercise.csproj", "{6BBA8F45-71AE-4090-AA00-F64317E905C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildToParentToChild", "DiamondProblem\ChildToParentToChild.csproj", "{50CE050B-88CE-459A-A171-18BB57CC499E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{6BBA8F45-71AE-4090-AA00-F64317E905C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BBA8F45-71AE-4090-AA00-F64317E905C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BBA8F45-71AE-4090-AA00-F64317E905C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50CE050B-88CE-459A-A171-18BB57CC499E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50CE050B-88CE-459A-A171-18BB57CC499E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50CE050B-88CE-459A-A171-18BB57CC499E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50CE050B-88CE-459A-A171-18BB57CC499E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

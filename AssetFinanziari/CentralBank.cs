@@ -8,7 +8,7 @@ using AssetFinanziari.Static;
 
 namespace AssetFinanziari
 {
-    public class CentralBank : Bank
+    internal class CentralBank : Bank
     {
         CommercialBank[] _commercialBank;
 

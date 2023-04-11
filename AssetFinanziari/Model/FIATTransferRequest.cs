@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AssetFinanziari.Model
 {
-    public class FIATTransferRequest
+    internal class FIATTransferRequest
     {
         string _assetName;
         decimal _amount;

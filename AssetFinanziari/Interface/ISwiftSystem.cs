@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AssetFinanziari.Interface
 {
-    public interface ISwiftSystem
+    internal interface ISwiftSystem
     {
         /*public string BICNumber { get; set; }
         public void CreateBICNumber();*/

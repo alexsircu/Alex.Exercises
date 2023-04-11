@@ -8,8 +8,16 @@ namespace AssetFinanziari
     {
         static void Main(string[] args)
         { 
+
+            //FILE LOG DIR AND NAME
+            //string dir = "D:\\Corso-c#-CGM\\Alex.Exercises\\Log";
+            //string fileName = "Operation.txt";
+
             //CENTRAL SWIFT BANK--------------------------
             SwiftCentralBank bancaDItalia = new SwiftCentralBank("Banca d'Italia", "Roma","Ignazio Visco", "Italia");
+
+            //STOCK MARKET
+            StockMarket piazzaAffari = new StockMarket("Piazza Affari", "Italia", "Milano", "P.za degli Affari, 6", "Raffaele Jerusalmi");
 
             //COMMERCIAL BANK
             CommercialBank unicredit = new CommercialBank("Unicredit", "Milano", "Andrea Orcel", "Italia");
@@ -18,31 +26,34 @@ namespace AssetFinanziari
             CommercialBank intesaSanPaolo = new CommercialBank("Intesa San Paolo", "Torino", "Andrea Orcel", "Italia");
             bancaDItalia.AddCommercialBank(intesaSanPaolo);
 
+            //ADD STOCK MARKET
+            unicredit.AddStockMarket(piazzaAffari);
+            intesaSanPaolo.AddStockMarket(piazzaAffari);
+
             //CLIENT
-            unicredit.AddBankClient("Mario", "Rossi", "MRARSS13S08H501H", 43, "maschio", "mario.rossi@gmail.com", "3287655611", "Via Torino", "Milano", "Italia");
+            bool marioIsAdded = unicredit.AddBankClient("Mario", "Rossi", "MRARSS13S08H501H", "23/12/1998", "maschio", "mario.rossi@gmail.com", "3287655611", "Via Torino", "Milano", "Italia");
+            if (!marioIsAdded) return;
 
             //BANK ACCOUNT
             unicredit.AddBankAccount("Mario", "Rossi", "MRARSS13S08H501H");
             long marioAccountIban = Test.Test.getIban(unicredit, "MRARSS13S08H501H");
 
+            //BUY STOCK ASSET NO MONEY
+            unicredit.BuyStockAsset("Tesla", 40000, "Euro", marioAccountIban);
+
             //ASSET
             unicredit.AddFiatAsset("Euro", marioAccountIban);
             unicredit.AddFiatAsset("GBP", marioAccountIban);
-            unicredit.AddStockAsset("Tesla", marioAccountIban);
             unicredit.AddCryptoAsset("Bitcoin", marioAccountIban);
           
             //FIAT OPERATIONS
-            unicredit.DepositFiat("Euro", 3700M, marioAccountIban);
-            unicredit.DepositFiat("GBP", 12000M, marioAccountIban);
-            //unicredit.BankAccountProp.WithdrawFiat(120M);
+            //unicredit.DepositFiat("Euro", 10000M, marioAccountIban);
+            //unicredit.DepositFiat("GBP", 12000M, marioAccountIban);
+            //unicredit.WithdrawFiat("Euro", 4000M, marioAccountIban);
+            //unicredit.WithdrawFiat("Euro", 1000M, marioAccountIban);
 
-            //STOCK OPERATIONS
-            //unicredit.BankAccountProp.BuyStock();
-            //unicredit.BankAccountProp.SellStock();
-
-            //CRYPTO OPERATIONS
-            //unicredit.BankAccountProp.BuyCrypto();
-            //unicredit.BankAccountProp.SellCrypto();
+            //BUY STOCK ASSET WITH MONEY
+            unicredit.BuyStockAsset("Tesla", 1000, "Euro", marioAccountIban);
 
             //CENTRAL BANK NO SWIFT-------------------------------
             CentralBank russianCentralBank = new CentralBank("Central Bank of the the Russian Federation", "Mosca", "El'vira Nabiullina", "Russia");
@@ -52,7 +63,8 @@ namespace AssetFinanziari
             russianCentralBank.AddCommercialBank(gazpromBank);
 
             //CLIENT
-            gazpromBank.AddBankClient("Ivan", "Smirnov", "IVNSMV22OI07U231", 34, "maschio", "ivan.smirnov@gmail.com", "345563456", "Ulitsa Potylikha", "Mosca", "Russia");
+            bool ivanIsAdded = gazpromBank.AddBankClient("Ivan", "Smirnov", "IVNSMV22OI07U231", "11/09/1976", "maschio", "ivan.smirnov@gmail.com", "345563456", "Ulitsa Potylikha", "Mosca", "Russia");
+            if (!ivanIsAdded) return;
 
             //BANK ACCOUNT
             gazpromBank.AddBankAccount("Ivan", "Smirnov", "IVNSMV22OI07U231");
@@ -60,11 +72,9 @@ namespace AssetFinanziari
 
             //ASSET
             gazpromBank.AddFiatAsset("rublo", ivanAccountIban);
-            gazpromBank.AddStockAsset("Lukoil", ivanAccountIban);
             gazpromBank.AddCryptoAsset("ETH", ivanAccountIban);
 
-            //BANK TRANSFER--------------------------
-
+            //BANK TRANSFER-------------------------------------------
             unicredit.Transfer(intesaSanPaolo, new FIATTransferRequest { AssetName = "Euro", Amount = 878M, IBANFrom = marioAccountIban, IBANTo = ivanAccountIban });
 
             //unicredit.BankAccountProp.TransferFiat(998M, "IBAN");
@@ -80,7 +90,7 @@ namespace AssetFinanziari
 
             //REMOVE ASSET
             unicredit.RemoveFiatAsset("Euro", marioAccountIban);
-            unicredit.RemoveStockAsset("Tesla", marioAccountIban);
+            //unicredit.RemoveStockAsset("Tesla", marioAccountIban);
             unicredit.RemoveCryptoAsset("Bitcoin", marioAccountIban);
         }
     }

@@ -7,7 +7,7 @@ using AssetFinanziari.Interface;
 
 namespace AssetFinanziari
 {
-    public class SwiftCentralBank : CentralBank, ISwiftSystem
+    internal class SwiftCentralBank : CentralBank, ISwiftSystem
     {
         /*string _BICNumber;
 

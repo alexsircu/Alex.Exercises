@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AssetFinanziari.Static
 {
-    public class WorldBank
+    internal class WorldBank
     {
         public static bool Transfer(CommercialBank from, CommercialBank to)
         {
