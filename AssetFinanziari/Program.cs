@@ -8,11 +8,6 @@ namespace AssetFinanziari
     {
         static void Main(string[] args)
         { 
-
-            //FILE LOG DIR AND NAME
-            //string dir = "D:\\Corso-c#-CGM\\Alex.Exercises\\Log";
-            //string fileName = "Operation.txt";
-
             //CENTRAL SWIFT BANK--------------------------
             SwiftCentralBank bancaDItalia = new SwiftCentralBank("Banca d'Italia", "Roma","Ignazio Visco", "Italia");
 
@@ -39,7 +34,8 @@ namespace AssetFinanziari
             long marioAccountIban = Test.Test.getIban(unicredit, "MRARSS13S08H501H");
 
             //BUY STOCK ASSET NO MONEY
-            unicredit.BuyStockAsset("Tesla", 40000, "Euro", marioAccountIban);
+            piazzaAffari.CreateStockAsset("Tesla", 11000, 340M);
+            unicredit.BuyStockAsset("Meta", 40000, "Euro", marioAccountIban);
 
             //ASSET
             unicredit.AddFiatAsset("Euro", marioAccountIban);
@@ -47,13 +43,13 @@ namespace AssetFinanziari
             unicredit.AddCryptoAsset("Bitcoin", marioAccountIban);
           
             //FIAT OPERATIONS
-            //unicredit.DepositFiat("Euro", 10000M, marioAccountIban);
-            //unicredit.DepositFiat("GBP", 12000M, marioAccountIban);
+            unicredit.DepositFiat("Euro", 10000M, marioAccountIban);
+            unicredit.DepositFiat("GBP", 12000M, marioAccountIban);
             //unicredit.WithdrawFiat("Euro", 4000M, marioAccountIban);
             //unicredit.WithdrawFiat("Euro", 1000M, marioAccountIban);
 
             //BUY STOCK ASSET WITH MONEY
-            unicredit.BuyStockAsset("Tesla", 1000, "Euro", marioAccountIban);
+            unicredit.BuyStockAsset("Meta", 1000, "Euro", marioAccountIban);
 
             //CENTRAL BANK NO SWIFT-------------------------------
             CentralBank russianCentralBank = new CentralBank("Central Bank of the the Russian Federation", "Mosca", "El'vira Nabiullina", "Russia");

@@ -42,19 +42,17 @@ namespace AssetFinanziari
             ClosingTime = TimeSpan.Parse("17:30");
             StockAssets = new StockAsset[0];
             CommercialBanks = new CommercialBank[0];
-
-            //CreateStockAsset();
         }
 
         //ADD
         //TODO: Stocks are created in StockMarket and a different Obj (StockAssedBuyed) is passed to the AccountBank
-        /*void CreateStockAsset()
+        public void CreateStockAsset(string assetName, int quantity, decimal value)
         {
-            StockAsset stock = StockAsset.Create();
+            StockAsset stock = StockAsset.Create(assetName, quantity, value);
             AddStockAsset(stock);
-        }*/
+        }
 
-        /*public void AddStockAsset(StockAsset stock)
+        private void AddStockAsset(StockAsset stock)
         {
             StockAsset[] temporaryArray = new StockAsset[StockAssets.Length + 1];
             Array.Copy(StockAssets, temporaryArray, StockAssets.Length);
@@ -62,7 +60,7 @@ namespace AssetFinanziari
             StockAssets[StockAssets.Length - 1] = stock;
 
             stock.AddStockMarket(this);
-        }*/
+        }
 
         public void AddCommercialBank(CommercialBank commercialBank)
         {
@@ -76,21 +74,20 @@ namespace AssetFinanziari
 
         protected override Asset BuyAsset(string assetName, decimal amount, StockMarket stockMarket)
         {
-            Console.WriteLine($"Acquisto di {assetName} effettuato");
-            return new StockAsset(assetName, amount);
-
-            /*StockAsset stockAsset = FindStockAsset(stockName);
+            StockAsset stockAsset = FindStockAsset(assetName);
             if (stockAsset is null) return null;
 
-            StockAssetBuyed stockAssetBuyed = new StockAssetBuyed(stockAsset.Name, stockAsset.Value, stockAsset.Quantity, amount, stockAsset.Value); 
+            return stockAsset;
+
+            /*StockAssetBuyed stockAssetBuyed = new StockAssetBuyed(stockAsset.Name, stockAsset.Value, stockAsset.Quantity, amount, stockAsset.Value); 
             return stockAssetBuyed;*/
         }
 
-        /*private StockAsset FindStockAsset(string stockName)
+        private StockAsset FindStockAsset(string assetName)
         {
-            StockAsset stockAsset = Array.Find(StockAssets, stock => stock.Name == stockName);
+            StockAsset stockAsset = Array.Find(StockAssets, stock => stock.Name == assetName);
             return stockAsset;
-        }*/
+        }
 
         //STOCK ASSET
         internal class StockAsset : Asset
@@ -105,19 +102,19 @@ namespace AssetFinanziari
             public StockMarket StockMarket { get { return _stockMarket; } set { _stockMarket = value; } }
             public decimal QuantityStockBuyed { get { return Amount / Value; } }
 
-            public StockAsset(string name, decimal amount) : base(name)
+            public StockAsset(string name, int quantity, decimal value) : base(name)
             {
                 Name = name;
-                Amount = amount;
+                Quantity = quantity;
                 Value = 120M;
                 //Value = value;
                 //Quantity = quantity;
             }
 
-            /*public static StockAsset Create()
+            public static StockAsset Create(string assetName, int quantity, decimal value)
             {
-                return new StockAsset("Tesla", 120M, 9000);
-            }*/
+                return new StockAsset(assetName, quantity, value);
+            }
 
             public void AddStockMarket(StockMarket stockMarket)
             {

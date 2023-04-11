@@ -25,9 +25,12 @@ namespace AssetFinanziari.Static
                 Directory.CreateDirectory(dir);
             }
 
-            foreach (string item in content)
+            for (int i = 0; i < content.Length; i++)
             {
-                sb.Append(item);
+                if (i == content.Length - 1) 
+                    sb.AppendLine(content[i]);
+                else
+                    sb.Append(content[i]);
             }
 
             File.AppendAllText(Path.Combine(dir, fileName), sb.ToString());

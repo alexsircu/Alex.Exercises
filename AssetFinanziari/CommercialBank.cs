@@ -35,7 +35,7 @@ namespace AssetFinanziari
         {
             DateTime clientBirthday;
             CultureInfo culture = CultureInfo.CurrentCulture;
-            string dateFormat = "dd/MM/yyyy";
+            string dateFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
 
             if (DateTime.TryParseExact(birthday, dateFormat, culture, DateTimeStyles.None, out clientBirthday))
             {
@@ -109,6 +109,12 @@ namespace AssetFinanziari
             if (isDone) 
             {
                 Asset stockAsset = base.BuyAsset(assetName, amount, StockMarket);
+                if (stockAsset is null)
+                {
+                    CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss")}, ", "Operation: buy stock denied stock not found, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban: {bankAccount.IBAN}, ", $"{fiatAsset} amount: {amount}" });
+                    return;
+                }
+ 
                 bankAccount.AddStockAsset(stockAsset);
                 CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss")}, ", "Operation: buy stock accepted, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban: {bankAccount.IBAN}, ", $"{fiatAsset} amount: {amount}" });
             } 
@@ -223,8 +229,7 @@ namespace AssetFinanziari
         //IS ADULT
         private bool IsAdult(DateTime birthday)
         {
-            int age = DateTime.Now.Year - birthday.Year;
-            if (age >= 18) return true;
+            if (birthday.AddYears(18) <= DateTime.Now) return true;
 
             Console.WriteLine("Is not adult");
             return false;
