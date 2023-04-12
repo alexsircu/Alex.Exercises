@@ -111,16 +111,16 @@ namespace AssetFinanziari
                 Asset stockAsset = base.BuyAsset(assetName, amount, StockMarket);
                 if (stockAsset is null)
                 {
-                    CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss")}, ", "Operation: buy stock denied stock not found, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban: {bankAccount.IBAN}, ", $"{fiatAsset} amount: {amount}" });
+                    CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss:fff")}, ", "Operation: buy stock denied stock not found, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban: {bankAccount.IBAN}, ", $"{fiatAsset} amount: {amount}" });
                     return;
                 }
  
                 bankAccount.AddStockAsset(stockAsset);
-                CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss")}, ", "Operation: buy stock accepted, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban: {bankAccount.IBAN}, ", $"{fiatAsset} amount: {amount}" });
+                CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss:fff")}, ", "Operation: buy stock accepted, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban: {bankAccount.IBAN}, ", $"{fiatAsset} amount: {amount}" });
             } 
             else
             {
-                CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss")}, ", "Operation: buy stock denied, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban: {bankAccount.IBAN}, ", $"{fiatAsset} amount: {amount}" });
+                CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss:fff")}, ", "Operation: buy stock denied, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban: {bankAccount.IBAN}, ", $"{fiatAsset} amount: {amount}" });
             }
         }
 
@@ -143,16 +143,16 @@ namespace AssetFinanziari
                         $"account {data.IBANTo} of from the Bank {to.Name} has been made! ");
                     Console.ResetColor();
 
-                    CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss")}, ", "Operation: transfer money completed, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban from: {data.IBANFrom}, ", $"Iban to: {data.IBANTo}, ", $"{data.AssetName} amount: {data.Amount}" });
+                    CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss:fff")}, ", "Operation: transfer money completed, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban from: {data.IBANFrom}, ", $"Iban to: {data.IBANTo}, ", $"{data.AssetName} amount: {data.Amount}" });
 
                     return true;
                 } 
                 else
                 {
-                    CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss")}, ", "Operation: transfer money denied, insufficient funds, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban from: {data.IBANFrom}, ", $"Iban to: {data.IBANTo}, ", $"{data.AssetName} amount: {data.Amount}" });
+                    CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss:fff")}, ", "Operation: transfer money denied, insufficient funds, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban from: {data.IBANFrom}, ", $"Iban to: {data.IBANTo}, ", $"{data.AssetName} amount: {data.Amount}" });
                 }
             }
-            CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss")}, ", "Operation: transfer money denied, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban from: {data.IBANFrom}, ", $"Iban to: {data.IBANTo}, ", $"{data.AssetName} amount: {data.Amount}" });
+            CustomLog.WriteLog(CustomLog.Dir, CustomLog.FileName, new string[] { $"Time: {DateTime.Now.ToString("HH:mm:ss:fff")}, ", "Operation: transfer money denied, ", $"Bank: {Name}, ", $"Name: {bankAccount.BankClient.Name}, ", $"Surname: {bankAccount.BankClient.Surname}, ", $"Iban from: {data.IBANFrom}, ", $"Iban to: {data.IBANTo}, ", $"{data.AssetName} amount: {data.Amount}" });
             return false;
         }
 
