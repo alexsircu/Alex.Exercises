@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace GenericsFileManagement
 {
@@ -10,11 +10,11 @@ namespace GenericsFileManagement
     {
         static void Main(string[] args)
         {
-            string filePath = "D:\\Corso-c#-CGM\\Alex.Exercises\\GenericsFileManagement\\Log\\file.csv";
+            string filePath = Directory.GetCurrentDirectory() + "\\Log\\file.csv";
 
             Person alessio = new Person { Name = "Alessio", Surname = "Presciuttini", CF = "dsfhsdjghe48w" };
             Person matteo = new Person { Name = "Matteo", Surname = "Luccisano", CF = "tytgfdsgert" };
-            Person cristina = new Person { Name = "Cristina", Surname = "Zappalà", CF = "34fdh345tr" };
+            Person cristina = new Person { Name = "Cristina", Surname = "Zappala", CF = "34fdh345tr" };
             Person fausto = new Person { Name = "Fausto", Surname = "Boshoff", CF = "bmyjhwrtyhg45" };
 
             List<Person> people = new List<Person>
@@ -25,14 +25,22 @@ namespace GenericsFileManagement
                 fausto
             };
 
-            //TextFileGenerator.SaveToFile(people, filePath);
-            TextFileGenerator.LoadFromCSVFile(alessio, filePath);
+            TextFileGenerator.SaveToFile(people, filePath);
+            var newList = TextFileGenerator.LoadFromCSVFile(alessio, filePath);
+
+            if (newList != null ) 
+            {
+                foreach (var item in newList)
+                {
+                    Console.WriteLine($"{item.Name}, {item.Surname}, {item.CF}");
+                }
+            }
         }
 
         public static class TextFileGenerator
         {
 
-            // Serialization 
+            //Serialization 
             public static void SaveToFile<T>(List<T> data, string filePath)
             {
                 StringBuilder line = new StringBuilder();
@@ -41,7 +49,7 @@ namespace GenericsFileManagement
                 if (data == null || data.Count == 0) return;
 
                 //retrieve properties
-                var cols = data[0].GetType().GetProperties(); 
+                var cols = data[0].GetType().GetProperties();
 
                 //file not exists create header
                 if (!File.Exists(filePath))
@@ -53,8 +61,8 @@ namespace GenericsFileManagement
 
                         if (col != cols.Last())
                         {
-                            line.Append(';');
-                        } 
+                            line.Append(',');
+                        }
                         else
                         {
                             line.Append('\n');
@@ -70,13 +78,13 @@ namespace GenericsFileManagement
                     line = new StringBuilder();
 
                     foreach (var col in cols)
-                    { 
+                    {
                         var value = col.GetValue(row);
                         line.Append(value);
 
                         if (col != cols.Last())
                         {
-                            line.Append(';');
+                            line.Append(',');
                         }
                         else
                         {
@@ -88,21 +96,33 @@ namespace GenericsFileManagement
                 }
             }
 
-            // Deserialization 
+            //Deserialization 
             public static List<T> LoadFromCSVFile<T>(T data, string filePath) where T : class, new()
             {
-
-
-                //1 header confronto con data per verificare che l'oggetto in questione può essere trovato nel file 
-
                 string[] rows = File.ReadAllLines(filePath);
                 var cols = data.GetType().GetProperties();
 
+                //check if header file is contained in T props
+                List<string> propsNameList = new List<string>();
+                string[] headerWordsAray = rows[0].Split(',');
+
+                foreach (var col in cols)
+                {
+                    propsNameList.Add(col.Name); 
+                }
+
+                foreach (var headerWord in headerWordsAray)
+                {
+                    if (!propsNameList.Contains(headerWord)) return null;
+                }
+
+                //new list with T objects
                 List<T> list = new List<T>();
 
                 foreach (var row in rows)
                 {
-
+                    if (row == rows.First()) continue;
+                         
                     T obj = new();
                     string[] rowWords = new string[cols.Length];
 
@@ -111,35 +131,18 @@ namespace GenericsFileManagement
                         rowWords = row.Split(',');
                     }
 
-                    foreach (var word in rowWords)
+                    for (int i = 0; i < headerWordsAray.Length; i++)
                     {
-                        foreach (var col in cols)
-                        {
-
-                            var convertedValue = Convert.ChangeType(word, col.PropertyType);
-
-
-
-                            col.SetValue(data, convertedValue);
-
-                        }
+                        //maybe rowWords and cols should be sorted to avoid bugs
+                        var convertedValue = Convert.ChangeType(rowWords[i], cols[i].PropertyType);
+                        obj.GetType().GetProperty(cols[i].Name).SetValue(obj, convertedValue);
                     }
 
-
-                    
+                    list.Add(obj);
                 }
 
-                
-
-
-
-
-
-
-                Console.WriteLine("Ciao");
                 return list;
             }
-
         }
 
         public class Person
