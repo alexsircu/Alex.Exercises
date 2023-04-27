@@ -17,7 +17,6 @@ namespace DelegateMatrioska
 
             //metodo che esegue tutto quanto
             functionClass.Execute(executeDelegate, sumDelegate);
-
         }
 
         public delegate void ExecuteDelegate(SumDelegate sumDelegate);
