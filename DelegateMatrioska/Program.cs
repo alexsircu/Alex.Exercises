@@ -1,5 +1,4 @@
 ﻿using System;
-using static DelegateMatrioska.Program;
 
 namespace DelegateMatrioska
 {
@@ -16,10 +15,10 @@ namespace DelegateMatrioska
             ExecuteDelegate executeDelegate = functionClass.ExecuteSumDelegate;
 
             //metodo che esegue tutto quanto
-            functionClass.Execute(executeDelegate, sumDelegate);
+            functionClass.Execute(executeDelegate, sumDelegate, 12, 54);
         }
 
-        public delegate void ExecuteDelegate(SumDelegate sumDelegate);
+        public delegate void ExecuteDelegate(SumDelegate sumDelegate, int x, int y);
         public delegate void SumDelegate(int x, int y);        
 
         public class FunctionClass
@@ -29,14 +28,14 @@ namespace DelegateMatrioska
                 Console.WriteLine(x+y);
             }
 
-            public void ExecuteSumDelegate(SumDelegate sumDelegate)
+            public void ExecuteSumDelegate(SumDelegate sumDelegate, int x, int y)
             {
-                sumDelegate(12, 45);
+                sumDelegate(x, y);
             }
 
-            public void Execute(ExecuteDelegate executeDelegate, SumDelegate sumDelegate)
+            public void Execute(ExecuteDelegate executeDelegate, SumDelegate sumDelegate, int x, int y)
             {
-                executeDelegate(sumDelegate);
+                executeDelegate(sumDelegate, x, y);
             }
         }
     }
