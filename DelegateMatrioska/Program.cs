@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace DelegateMatrioska
 {
@@ -6,22 +7,44 @@ namespace DelegateMatrioska
     {
         static void Main(string[] args)
         {
-            FunctionClass functionClass = new FunctionClass();
+            //ESERCIZIO 1
+            UtilityClass utility = new UtilityClass();
 
             //delegate che esegue metodo Sum
-            SumDelegate sumDelegate = functionClass.Sum;
+            SumDelegate sumDelegate = utility.Sum;
 
             //delegate che esegue metodo ExecuteSumDelegate
-            ExecuteDelegate executeDelegate = functionClass.ExecuteSumDelegate;
+            ExecuteDelegate executeDelegate = utility.ExecuteSumDelegate;
 
             //metodo che esegue tutto quanto
-            functionClass.Execute(executeDelegate, sumDelegate, 12, 54);
+            utility.Execute(executeDelegate, sumDelegate, 12, 54);
+
+            //ESERCIZIO 2
+            Func<int, int, int> numMoltiplication = (int x, int y) =>
+            {
+                return x * y;
+            };
+
+            Func<int, int, bool> numComparison = (int x, int prod) =>
+            {
+                return prod > x ? true : false;
+            };
+
+            Action<bool> displayResult = (bool result) => 
+            {
+                if (result) Console.WriteLine("Il prodotto è maggiore"); 
+            };
+
+            bool result = numComparison(14, numMoltiplication(3, 222));
+            displayResult(result);
+
         }
 
+        //ESERCIZIO 1
         public delegate void ExecuteDelegate(SumDelegate sumDelegate, int x, int y);
         public delegate void SumDelegate(int x, int y);        
 
-        public class FunctionClass
+        public class UtilityClass
         {
             public void Sum(int x, int y)
             {
