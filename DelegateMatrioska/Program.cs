@@ -43,11 +43,13 @@ namespace DelegateMatrioska
             EUDigitalWallet wallet = new EUDigitalWallet("mario", "rossi", "msdgdkjfg2345r", "dignitosamente sano");
             InsuranceInstitution insurance = new InsuranceInstitution();
 
-            insurance.CreatePlan(wallet.GetClinicalSituation());
-            Console.WriteLine(insurance.GetData().Situation);
-
-            wallet.UpdateClinicalSituation("sano come un pesce");
-            Console.WriteLine(insurance.GetData().Situation);
+            bool planIsCreated = insurance.CreatePlan(wallet.GetClinicalSituation());
+            if (planIsCreated)
+            { 
+                Console.WriteLine(insurance.GetData().Situation);
+                wallet.UpdateClinicalSituation("sano come un pesce");
+                Console.WriteLine(insurance.GetData().Situation);
+            }
         }
 
         //ESERCIZIO 1
@@ -118,16 +120,17 @@ namespace DelegateMatrioska
         public class InsuranceInstitution : EUEntity
         {
             List<ClinicalSituation> _clinicalSituations = new List<ClinicalSituation>();
-            public void CreatePlan(ClinicalSituation data)
+            public bool CreatePlan(ClinicalSituation data)
             {
                 bool isTrue = askClient();
                 if (!isTrue)
                 {
-                    Console.WriteLine("Non accettato di inviare i dati sanitari, non puoi procedere");
-                    return;
+                    Console.WriteLine("Non hai accettato di inviare i dati sanitari, non puoi procedere");
+                    return false;
                 } 
                     
                 _clinicalSituations.Add(data);
+                return true;
             }
 
             private bool askClient()
