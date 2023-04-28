@@ -120,7 +120,24 @@ namespace DelegateMatrioska
             List<ClinicalSituation> _clinicalSituations = new List<ClinicalSituation>();
             public void CreatePlan(ClinicalSituation data)
             {
+                bool isTrue = askClient();
+                if (!isTrue)
+                {
+                    Console.WriteLine("Non accettato di inviare i dati sanitari, non puoi procedere");
+                    return;
+                } 
+                    
                 _clinicalSituations.Add(data);
+            }
+
+            private bool askClient()
+            {
+                Console.WriteLine("Accetti di inviare i dati sanitari?");
+                string input = Console.ReadLine();
+                input.ToLower();
+
+                if (input == "si" || input == "yes") return true;
+                return false;
             }
 
             public ClinicalSituation GetData()
