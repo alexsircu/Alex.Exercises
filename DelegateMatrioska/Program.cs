@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace DelegateMatrioska
@@ -38,6 +39,15 @@ namespace DelegateMatrioska
             bool result = numComparison(14, numMoltiplication(3, 222));
             displayResult(result);
 
+            //ESERCIZIO 3
+            EUDigitalWallet wallet = new EUDigitalWallet("mario", "rossi", "msdgdkjfg2345r", "dignitosamente sano");
+            InsuranceInstitution insurance = new InsuranceInstitution();
+
+            insurance.CreatePlan(wallet.GetClinicalSituation());
+            Console.WriteLine(insurance.GetData().Situation);
+
+            wallet.UpdateClinicalSituation("sano come un pesce");
+            Console.WriteLine(insurance.GetData().Situation);
         }
 
         //ESERCIZIO 1
@@ -59,6 +69,63 @@ namespace DelegateMatrioska
             public void Execute(ExecuteDelegate executeDelegate, SumDelegate sumDelegate, int x, int y)
             {
                 executeDelegate(sumDelegate, x, y);
+            }
+        }
+
+        //ESERCIZIO 3
+        public abstract class EUEntity
+        {
+            public class ClinicalSituation
+            {
+                string _situation;
+
+                public string Situation { get { return _situation; } set { _situation = value; } }
+
+                public ClinicalSituation(string situation)
+                {
+                    _situation = situation;
+                }
+            }
+        }
+
+        public class EUDigitalWallet : EUEntity
+        {
+            string _name;
+            string _surname;
+            string _cf;
+            ClinicalSituation _situation;
+
+            public EUDigitalWallet(string name, string surname, string cf, string situation)
+            {
+                _name = name;
+                _surname = surname;
+                _cf = cf;
+                _situation = new ClinicalSituation(situation);
+            }
+
+            public ClinicalSituation GetClinicalSituation()
+            {
+                //gestisce tutta la clinical situation
+                return _situation;
+            }
+
+            public void UpdateClinicalSituation(string situation)
+            {
+                _situation.Situation = situation;
+            }
+        }
+
+        public class InsuranceInstitution : EUEntity
+        {
+            List<ClinicalSituation> _clinicalSituations = new List<ClinicalSituation>();
+            public void CreatePlan(ClinicalSituation data)
+            {
+                _clinicalSituations.Add(data);
+            }
+
+            public ClinicalSituation GetData()
+            {
+                return _clinicalSituations[0];
             }
         }
     }
