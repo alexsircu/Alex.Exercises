@@ -26,20 +26,15 @@ namespace CovidCounter
 
         }
 
-        public void CalcTotalCovidCases()
-        {
-            TotalCovidPositives = 0;
-
-            foreach (Country country in CountryList)
-            {
-                TotalCovidPositives += country.CovidPositives;
-            }
-        }
-
-        public void UpdateCovidPositives(string countryName, int num, TotalCovidCase totalCovidCase)
+        public Country GetCountry(string countryName) 
         {
             Country country = CountryList.Find(x => x.Name == countryName);
-            country.UpdateCovidPositives(num, totalCovidCase);
+            return country;
+        }
+
+        public void CalcTotalCovidCases(object sender, CovidCaseEventArgs e)
+        {
+            TotalCovidPositives += e.NewCovidCase;
         }
 
         public void GetCountriesCovidPositives()

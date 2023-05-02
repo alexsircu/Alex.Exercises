@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 
 namespace CovidCounter
 {
@@ -10,12 +9,13 @@ namespace CovidCounter
         {
             List<string> countries = new List<string>() { "Italia", "Germania", "Francia", "Portogallo", "Spagna" };
             EMA ema = new EMA(countries);
-            TotalCovidCase totalCovidCaseDelegate = ema.CalcTotalCovidCases;
             var random = new Random();
 
             foreach (var country in countries)
             {
-                ema.UpdateCovidPositives(country, random.Next(1, 100000), totalCovidCaseDelegate);
+                var countryObj = ema.GetCountry(country);
+                countryObj.CovidPositivesChanged += new Country.CovidCaseHandler(ema.CalcTotalCovidCases);
+                countryObj.CovidPositives = random.Next(1, 100000);
             }
 
             ema.GetCountriesCovidPositives();
@@ -23,11 +23,10 @@ namespace CovidCounter
             Console.WriteLine("Positivi totali");
             Console.WriteLine(ema.TotalCovidPositives);
 
-            ema.UpdateCovidPositives("Italia", random.Next(1, 100000), totalCovidCaseDelegate);
+            var italy = ema.GetCountry("Italia");
+            italy.CovidPositives = 500;
             Console.WriteLine("Positivi totali aggiornati");
             Console.WriteLine(ema.TotalCovidPositives);
         }
     }
-
-    public delegate void TotalCovidCase();
 }
