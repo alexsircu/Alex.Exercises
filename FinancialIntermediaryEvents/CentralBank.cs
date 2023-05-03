@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FinancialIntermediaryEvents.Delegates;
 
 namespace FinancialIntermediaryEvents
 {
@@ -46,7 +47,7 @@ namespace FinancialIntermediaryEvents
 
         public virtual void NotifyCentralBankCEOChanged(object sender, ChangeCEOEventArgs e)
         {
-            Console.WriteLine($"{e.Name} {e.Surname} è il nuovo CEO di {sender.GetType().GetProperty("Name").GetValue(sender)}");
+           
         }
 
         internal class CEO
@@ -62,21 +63,6 @@ namespace FinancialIntermediaryEvents
                 Name = name;
                 Surname = surname;  
             }
-        }
-    }
-
-    internal class ChangeCEOEventArgs : EventArgs
-    {
-        string _name;
-        string _surname;
-
-        public string Name { get => _name; set => _name = value; }
-        public string Surname { get => _surname; set => _surname = value; }
-
-        public ChangeCEOEventArgs(string name, string surname)
-        {
-            _name = name;
-            _surname = surname;
         }
     }
 }
