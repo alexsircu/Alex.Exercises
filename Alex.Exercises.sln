@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegateMatrioska", "Delega
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CovidCounter", "CovidCounter\CovidCounter.csproj", "{58DAE748-0BA7-4D09-9C82-3316466C65AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinancialIntermediaryEvents", "FinancialIntermediaryEvents\FinancialIntermediaryEvents.csproj", "{A3A7987E-6B8A-4DCC-9404-D38CC612EAD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancialIntermediaryEvents", "FinancialIntermediaryEvents\FinancialIntermediaryEvents.csproj", "{A3A7987E-6B8A-4DCC-9404-D38CC612EAD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingletonProxy", "SingletonProxy\SingletonProxy.csproj", "{41041298-2B94-4E42-AB74-95CCF49396AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{A3A7987E-6B8A-4DCC-9404-D38CC612EAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3A7987E-6B8A-4DCC-9404-D38CC612EAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3A7987E-6B8A-4DCC-9404-D38CC612EAD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41041298-2B94-4E42-AB74-95CCF49396AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41041298-2B94-4E42-AB74-95CCF49396AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41041298-2B94-4E42-AB74-95CCF49396AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41041298-2B94-4E42-AB74-95CCF49396AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
