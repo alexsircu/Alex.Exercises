@@ -1,5 +1,6 @@
 ﻿using System;
 using static FinancialIntermediaryEvents.CentralBank;
+using FinancialIntermediaryEvents.WithObserverPattern;
 
 namespace FinancialIntermediaryEvents
 {
@@ -15,7 +16,18 @@ namespace FinancialIntermediaryEvents
             bancaCentraleItaliana.ChangedCEO += new ChangeCEOEventHandler(unicredit.NotifyCentralBankCEOChanged);
             bancaCentraleItaliana.ChangedCEO += new ChangeCEOEventHandler(borsaItaliana.NotifyCentralBankCEOChanged);
 
-            bancaCentraleItaliana.ChangeCEO("Mario", "Rossi");
+            //bancaCentraleItaliana.ChangeCEO("Mario", "Rossi");
+
+            //WITH OBSERVER PATTERN
+            Intermediary.CentralBank bCentraleItaliana = new Intermediary.CentralBank("Banca d'Italia", "Ignazio", "Visco");
+            Intermediary.CommercialBank unic = new Intermediary.CommercialBank("Unicredit", bCentraleItaliana);
+            Intermediary.StockMarket bItaliana = new Intermediary.StockMarket("Borsa Italiana", bCentraleItaliana);
+
+            bCentraleItaliana.Attach(unic);
+            bCentraleItaliana.Attach(bItaliana);
+
+            bCentraleItaliana.ChangeCEO("Mario", "Rossi");
+            bCentraleItaliana.Notify();
         }
     }
 }
