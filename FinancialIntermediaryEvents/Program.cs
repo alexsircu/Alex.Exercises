@@ -27,7 +27,6 @@ namespace FinancialIntermediaryEvents
             bCentraleItaliana.Attach(bItaliana);
 
             bCentraleItaliana.ChangeCEO("Mario", "Rossi");
-            bCentraleItaliana.Notify();
         }
     }
 }

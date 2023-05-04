@@ -19,7 +19,16 @@ namespace FinancialIntermediaryEvents.WithObserverPattern
             string _name;
 
             public string Name { get => _name; set => _name = value; }
-            public CEO Ceo { get => _ceo; set => _ceo = value; }
+            public CEO Ceo { get => _ceo;
+                set 
+                {
+                    if (value != ceo)
+                    {
+                        ceo = value;
+                        Notify();
+                    }
+                } 
+            }
 
             public CentralBank(string intermediaryName, string ceoName, string ceoSurname)
             {
