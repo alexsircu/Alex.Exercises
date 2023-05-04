@@ -22,9 +22,9 @@ namespace FinancialIntermediaryEvents.WithObserverPattern
             public CEO Ceo { get => _ceo;
                 set 
                 {
-                    if (value != ceo)
+                    if (value != _ceo)
                     {
-                        ceo = value;
+                        _ceo = value;
                         Notify();
                     }
                 } 
