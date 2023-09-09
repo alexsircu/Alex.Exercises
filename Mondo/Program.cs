@@ -14,6 +14,7 @@ namespace Mondo
             europa.CreateComune("Galliate");
 
             europa.ChangeCoumne("Italia", "Lombardia", "Busto Arsizio", "Galliate");
+            //modifica inutile
         }
     }
 }
